@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Gestion de personas</title>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head"/>
+    </h:head>
+    <h:body>
+        <h:form id="formInsertar">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nombre"/>
+                <p:inputText value="#{personaBean.persona.nombre}" requiredMessage="Nombre es requerido"/>
+                
+                
+                <p:outputLabel value="Apellido"/>
+                <p:inputText value="#{personaBean.persona.apellido}" requiredMessage="Apellido es requerido"/>
+                
+               
+                <p:outputLabel value="Telefono"/>
+                <p:inputText value="#{personaBean.persona.telefono}" requiredMessage="Telefono es requerido"/>
+                
+                
+                <p:outputLabel value="direccion"/>
+                <p:inputText value="#{personaBean.persona.direccion}" requiredMessage="Nombre es requerido"/>
+                
+                <p:outputLabel for = "button" value="Fecha Nacimiento"/>
+                <p:calendar id="button" value="#{personaBean.persona.fechaNacimiento}" mindate="1/1/50" navigator="true" showOn="button"/>
+                
+                <h:outputText value=" "/>
+                <h:outputText value="#{personaBean.persona.fechaNacimiento}">
+                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                </h:outputText>
+                
+                <h:outputLabel value="Salario" />
+                <p:inputText value="#{personaBean.persona.salario}" required="true" requiredMessage="Salario requerido">
+                    <f:convertNumber type="currency" currencySymbol="$"/>
+                    
+                </p:inputText>
+                
+            </p:panelGrid>
+            <p:commandButton actionListener="#{personaBean.insertar()}" value="Ingresar Persona" update=":formMostrar, formInsertar:memgen"/>
+        
+            
+            <div style="width: 300px;">
+                <p:messages id="memgen"/>
+            </div>
+        
+        
+        </h:form>
+        
+        <h:form id="formMostrar">
+            <p:dataTable var="per" id="mydata" value="#{personaBean.personas}" emptyMessage="No hay personas disponibles"
+                         paginator="true" rows="10" paginatorPosition="top" paginatorTemplate="{CurrentPageReport} 
+                         {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} 
+                         {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10">
+                <p:column headerText="Id Persona">
+                    <h:outputText value="#{per.idPersona}"/>
+                </p:column>
+                
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{per.nombre}"/>
+                </p:column>
+                
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{per.apellido}"/>
+                </p:column>
+                
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{per.direccion}"/>
+                </p:column>
+                
+                <p:column headerText="telefono">
+                    <h:outputText value="#{per.telefono}"/>
+                </p:column>
+                
+                <p:column headerText="Fecha Nacimiento">
+                    <h:outputText value="#{per.fechaNacimiento}"/>
+                </p:column>
+                
+                <p:column headerText="Salario">
+                    <h:outputText value="#{per.salario}"/>
+                </p:column>
+                
+                <p:column headerText="Id Persona">
+                    <h:outputText value="#{per.idPersona}"/>
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>
+        
+    </h:body>
+</html>
+

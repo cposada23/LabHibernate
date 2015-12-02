@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2/12/2015 10:41:00 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Persona" table="persona" catalog="LabHibernate" optimistic-lock="version">
+        <id name="idPersona" type="java.lang.Integer">
+            <column name="idPersona" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="50" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="100" not-null="true" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="fecha_nacimiento" length="10" not-null="true" />
+        </property>
+        <property name="salario" type="double">
+            <column name="salario" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
